@@ -90,7 +90,7 @@ def LogOutPage(request):
 def select_food(request):
 	person = Profile.objects.filter(person_of=request.user).last()
 	#for showing all food items available
-	food_items = Food.objects.filter(person_of=request.user)
+	food_items = Food.objects.all()
 	form = SelectFoodForm(request.user,instance=person)
 
 	if request.method == 'POST':
@@ -121,7 +121,7 @@ def add_food(request):
 		form = AddFoodForm()
 	#for filtering food
 	myFilter = FoodFilter(request.GET,queryset=food_items)
-	food_items = myFilter.qs
+	food_items = Food.objects.all()
 	context = {'form':form,'food_items':food_items,'myFilter':myFilter}
 	return render(request,'add_food.html',context)
 

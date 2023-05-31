@@ -17,7 +17,7 @@ class SelectFoodForm(forms.ModelForm):
 
     def __init__(self, user, *args, **kwargs):
         super(SelectFoodForm, self).__init__(*args, **kwargs)
-        self.fields['food_selected'].queryset = Food.objects.filter(person_of=user)
+        self.fields['food_selected'].queryset = Food.objects.all()
 
 class AddFoodForm(forms.ModelForm):
     class Meta:
